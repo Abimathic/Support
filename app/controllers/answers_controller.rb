@@ -11,8 +11,6 @@ class AnswersController < ApplicationController
   def create
     @answer= @question.answers.new(post_params)
     @answer.user = current_user
-    #@question.user = current_user
-
     respond_to do |format|
       if @answer.save
         format.html { redirect_to @question, notice: 'Answer was successfully created.' }
@@ -50,27 +48,28 @@ class AnswersController < ApplicationController
 
   def show
   end
+
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @answer = Answer.find(params[:id])
-    end
+  def set_post
+    @answer = Answer.find(params[:id])
+  end
 
-    def find_question
-      @question = Question.find(params[:question_id])
-    end
+  def find_question
+    @question = Question.find(params[:question_id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:answer).permit(:answer)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def post_params
+    params.require(:answer).permit(:answer)
+  end
 
-    def require_permission
+  def require_permission
     unless current_user.answers.where(question_id: @question).first.blank?
       respond_to do |format|
-      format.html { redirect_to @question,notice: 'You are not allowed to create the answer' }
-    end
+        format.html { redirect_to @question,notice: 'You are not allowed to create the answer' }
       end
     end
+  end
 
 end
