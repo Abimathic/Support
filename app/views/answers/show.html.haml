@@ -1,0 +1,16 @@
+/= @answer.answer
+= link_to 'Add Comment', new_question_answer_comment_path(@question,@answer)
+%br/
+%h4 Answer Comments
+%table
+  %tbody
+    - @answer.comments.each do|c|
+      %tr
+      %td= c.comment
+      %td= c.user.fullname
+      - if current_user == c.user
+        %td= link_to 'Edit', edit_question_answer_comment_path(id: c.id, answer_id:@answer,question_id:@question)
+        %td= link_to 'Destroy',question_answer_comment_path(id: c.id,answer_id:@answer,question_id:@question), method: :delete, data: { confirm: 'Are you sure?' }
+
+
+

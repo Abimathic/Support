@@ -1,0 +1,15 @@
+= form_for(@question) do |f|
+  - if @question.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@question.errors.count, "error")
+        prohibited this post from being saved:
+      %ul
+        - @question.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :Question
+    %br/
+    = f.text_area :quesbox,class: "form-control",:rows => 3
+  .actions
+    = f.submit "Create Question", :class => "btn btn-primary"

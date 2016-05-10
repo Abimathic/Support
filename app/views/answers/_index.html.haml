@@ -1,0 +1,28 @@
+%br/
+%span= @question.answers.count
+%span= @question.user.anscount
+- if current_user.answers.where(question_id: @question).first.blank?
+  %span.ans_comment= link_to 'Add Answer', new_question_answer_path(@question)
+%hr
+- @question.answers.each do|answer|
+  .question_answer
+    %span.answer= answer.answer
+    %span.fullname= "-#{answer.user.fullname}"
+    - if current_user == answer.user
+      = link_to 'Edit', edit_question_answer_path(id: answer.id, question_id:@question)
+      = link_to 'Destroy',question_answer_path(id: answer.id, question_id:@question), method: :delete, data: { confirm: 'Are you sure?' }
+  %hr
+
+  - answer.comments.each do|c|
+    .answer_comment
+      %span.comment= c.comment
+      %span.fullname="- #{c.user.fullname}"
+      - if current_user == c.user
+        = link_to 'Edit', edit_question_answer_comment_path(id: c.id, answer_id: answer.id,question_id:@question)
+        = link_to 'Destroy',question_answer_comment_path(id: c.id,answer_id: answer.id,question_id:@question), method: :delete, data: { confirm: 'Are you sure?' }
+  %br/
+  .comment= link_to 'Add Comment', new_question_answer_comment_path(@question, answer)
+  %hr
+
+
+

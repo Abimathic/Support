@@ -1,0 +1,97 @@
+.fullname
+{
+  color: blue;
+}
+.answer
+{
+  font-size: 18px;
+  font-family: Arial;
+
+}
+.comment
+{
+  margin-left: 30px;
+  font-family: Times;
+  font-size: 16px;
+  text-indent: 0px;
+}
+.image {
+   float: left;
+ }
+ .question
+ {
+  font-size: 25px;
+ }
+ .ans_comment
+ {
+   margin-left: 5px;
+ }
+html, body {
+  height: 100%;
+}
+.wrapper {
+  min-height: 100%;
+  height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
+  height: 100%;
+  margin: 0 auto -60px; /* the bottom margin is the negative value of the footer's height */
+}
+.push {
+  height: 65px; /* .push must be the same height as .footer */
+}
+
+footer {
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #808080;
+
+}
+/*.dropdown
+{
+  position: relative;
+  left: 880px;
+
+
+}*/
+.navbar.navbar-default.navbar-static-top
+{
+  background-color: #808080;
+}
+.signed-in-navbar
+{
+  margin-top: -10px !important;
+}
+textarea
+ {
+  height: 50px;
+  width: 50%;
+}
+
+.inner-box
+{
+  padding: 30px;
+  margin-bottom: 30px;
+  color: inherit;
+  background-color: #eee;
+  border-radius: 9px;
+}
+.center {
+  text-align: center;
+}
+.pass-field
+{
+  margin-left: 350px;
+}
+.editpass-field
+{
+  margin-left: 300px;
+}
+.passconfirm-field
+{
+  margin-left: 100px;
+}
+.back-link
+{
+  margin-left: 650px;
+  margin-top: 0px;
+}
