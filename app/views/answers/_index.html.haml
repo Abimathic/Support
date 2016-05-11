@@ -15,7 +15,7 @@
 
   - answer.comments.each do|c|
     .answer_comment
-      %span.comment= c.comment
+      %span= c.comment
       %span.fullname="- #{c.user.fullname}"
       - if current_user == c.user
         = link_to 'Edit', edit_question_answer_comment_path(id: c.id, answer_id: answer.id,question_id:@question)

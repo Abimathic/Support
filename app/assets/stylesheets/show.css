@@ -15,6 +15,12 @@
   font-size: 16px;
   text-indent: 0px;
 }
+.answer_comment
+{
+  margin-left: 30px;
+  font-family: Times;
+  font-size: 16px;
+}
 .image {
    float: left;
  }

@@ -2,7 +2,8 @@
   .question_list
     = link_to question.quesbox, question
     - if current_user == question.user
-      = link_to 'Edit', edit_question_path(question), :class => "btn-primary"
-      = link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn-primary"
+      = link_to 'Edit', edit_question_path(question), class: "btn btn-primary btn-xs"
+      = link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-primary btn-xs"
 %br/
 = link_to 'Create Question', new_question_path
+

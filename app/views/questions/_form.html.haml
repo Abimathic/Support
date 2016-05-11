@@ -1,15 +1,21 @@
-= form_for(@question) do |f|
-  - if @question.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@question.errors.count, "error")
-        prohibited this post from being saved:
-      %ul
-        - @question.errors.full_messages.each do |message|
-          %li= message
-  .field
-    = f.label :Question
+.col-lg-3
+.col-lg-6
+  = form_for(@question) do |f|
+    - if @question.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@question.errors.count, "error")
+          prohibited this post from being saved:
+        %ul
+          - @question.errors.full_messages.each do |message|
+            %li= message
+    .field
+      = f.label :Question
+      %br/
+      = f.text_area :quesbox,class: "form-control",:rows => 7
     %br/
-    = f.text_area :quesbox,class: "form-control",:rows => 3
-  .actions
-    = f.submit "Create Question", :class => "btn btn-primary"
+    .actions
+      = f.submit "Create Question", :class => "btn btn-primary"
+      = link_to 'Back', questions_path
+
+.col-lg-3
