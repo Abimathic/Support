@@ -5,4 +5,7 @@ class Question < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   validates :quesbox, :presence => true
+
+
+
 end

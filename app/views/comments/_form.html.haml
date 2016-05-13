@@ -1,14 +1,7 @@
 .col-lg-3
 .col-lg-6
   = form_for([@question, @commentable]) do |f|
-    - if @commentable.errors.any?
-      #error_explanation
-        %h2
-          = pluralize(@commentable.errors.count, "error")
-          prohibited this post from being saved:
-        %ul
-          - @commentable.errors.full_messages.each do |message|
-            %li= message
+    -com_error_messages
     .field
       = f.label :Comments
       %br/

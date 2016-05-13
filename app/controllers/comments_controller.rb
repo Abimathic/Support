@@ -35,7 +35,21 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @commentable.update(post_params)
+    #@commentable.update(post_params)
+
+    commentable = find_commentable
+    if @commentable.check_history?
+     params = post_params.merge(history_id: @commentable.id)
+     @commentable = commentable.comments.new(params)
+     @commentable.user = current_user
+     @commentable.save
+   else
+     params = post_params.merge(history_id: @commentable.history_id)
+     @commentable = commentable.comments.new(params)
+     @commentable.user = current_user
+     @commentable.save
+    end
+
     if (@commentable.commentable_type == "Question")
       redirect_to @question, notice: 'Comment was successfully updated.'
     else
@@ -53,6 +67,11 @@ class CommentsController < ApplicationController
     else
       redirect_to @question, notice: 'Comment Answer was successfully destroyed.'
     end
+  end
+
+  def comment_history
+   @comment_history = Comment.list_comment_history(params[:history_id], params[:dont_show])
+   # Comment.where("history_id IS NULL AND id =? XOR history_id =? AND id != ?", 143,143, 143).order("id DESC").first
   end
 
   def show

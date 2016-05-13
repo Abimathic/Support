@@ -1,17 +1,6 @@
 Rails.application.routes.draw do
-  get 'comments/new'
+  get 'comments/comment_history'
 
-  get 'comments/index'
-
-  get 'comments/create'
-
-  get 'comments/update'
-
-  get 'comments/edit'
-
-  get 'comments/destroy'
-
-  get 'comments/show'
 
   #get 'answers/new'
 

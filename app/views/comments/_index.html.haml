@@ -1,8 +1,11 @@
 .comment
-  - question.comments.each do|c|
+  - question.comments.where("history_id IS NULL").each do |comment|
     .question_comment
-      %span= c.comment
-      %span.fullname= "-#{c.user.fullname}"
-      - if current_user == c.user
-        %td= link_to 'Edit', edit_question_comment_path(id: c.id, question_id:question)
-        %td= link_to 'Destroy', question_comment_path(id: c.id, question_id:question), method: :delete, data: { confirm: 'Are you sure?' }
+      - question_comment = Comment.show_history(comment.id)
+      %span= question_comment.comment
+      %span.fullname= "- #{question_comment.user.fullname}"
+      - if current_user == question_comment.user
+        = link_to 'Edit', edit_question_comment_path(id: comment.id, question_id:question)
+        - unless question_comment.check_history?
+          = link_to 'Edited', comments_comment_history_path(history_id: question_comment.history_id, dont_show: question_comment.id)
+        = link_to 'Destroy', question_comment_path(id: comment.id, question_id:question), method: :delete, data: { confirm: 'Are you sure?' }
